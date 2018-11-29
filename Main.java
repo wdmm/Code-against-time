@@ -5,6 +5,13 @@ import java.util.Arrays;
 
 public class Main {
 
+    public static boolean verify (String c, String k, Integer l) {
+        for ( int y = 0; y < l; y++)
+            if (c.charAt(y) == k.charAt(y)) return false;
+            else continue;
+        return true;
+    }
+
     public static void main (String[] args) {
         String cipher ="";
         Integer n;
@@ -22,29 +29,13 @@ public class Main {
         }  
         
         Integer cip_len = cipher.length();
-		
-        Comparable cuilt = (c, k) -> cip_len == k.length() ? true : false;
-        Verifable vuilt = (c, k) -> {
-            for ( int y = 0; y < cip_len; y++)
-                if (c.charAt(y) == k.charAt(y)) return false;
-                else continue;
-            return true;
-        };
         
         for (String k : keys)
-            if (cuilt.compare(cipher, k))
-                if (vuilt.verify(cipher, k)) result++;
-                else continue;
+            if (cip_len == k.length())
+                if(verify(cipher, k, cip_len))
+                    result++;
 
        System.out.println(result);
-	   
     }
-}
 
-interface Comparable{
-    boolean compare (String c, String k);
-}
-
-interface Verifable{
-    boolean verify (String c, String k);
 }
